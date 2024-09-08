@@ -12,7 +12,7 @@ const App = () => {
     const fetchAttacks = async () => {
       try {
         // Añadir withCredentials si es necesario
-        const response = await axios.get("http://localhost:3001/api/attacks", {
+        const response = await axios.get("/api/attacks", {
           withCredentials: true, // Incluir esto solo si tu backend usa `credentials: true`
         });
         setAttacks(response.data);
