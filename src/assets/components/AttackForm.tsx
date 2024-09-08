@@ -21,7 +21,7 @@ interface AttackFormProps {
 }
 
 const AttackForm = ({ addAttack }: AttackFormProps) => {
-  const apiUrl = import.meta.env.VITE_API_URL;
+  const apiUrl = process.env.VITE_API_URL || "http://localhost:3001";
   console.log("API URL in AttackForm:", apiUrl);
   const [formData, setFormData] = useState<AttackFormType>({
     type: "",
