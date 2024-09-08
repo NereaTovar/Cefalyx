@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 // Configuración de CORS
 app.use(
   cors({
-    origin: "https://cefalyx-2xns9fds8-nereas-projects-2a045b48.vercel.app/",
+    origin: "https://cefalyx-i3zwifq18-nereas-projects-2a045b48.vercel.app/",
     methods: "GET, POST, PUT, DELETE", // Métodos HTTP permitidos
     credentials: true, // Habilitar credenciales si es necesario
   })
