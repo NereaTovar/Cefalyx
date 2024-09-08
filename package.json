@@ -5,9 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "start": "node public/server/index.js",
+    "build": "vite build"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
