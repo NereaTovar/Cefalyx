@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Attack from "../../models/Attack";
+import Attack from "../models/Attack";
 
 // Evitar múltiples conexiones en el ciclo de vida de la aplicación
 if (!mongoose.connections[0].readyState) {
