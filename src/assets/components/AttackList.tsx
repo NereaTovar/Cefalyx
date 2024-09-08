@@ -54,8 +54,7 @@ const AttackList = ({ attacks, setAttacks }: AttackListProps) => {
 
   const fetchAttacks = async () => {
     try {
-      // const response = await axios.get(`${apiUrl}/api/attacks`);
-      const response = await axios.get("/api/attacks");
+      const response = await axios.get(`${apiUrl}/api/attacks`);
       const fetchedAttacks: AttackListType[] = Array.isArray(response.data)
         ? response.data
         : [];

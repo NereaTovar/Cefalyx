@@ -40,12 +40,27 @@
 //   }
 // }
 
-import mongoose from 'mongoose';
-import Attack from '../models/Attack';  // Ruta correcta al modelo Attack
+import mongoose from "mongoose";
+import Attack from "../models/Attack"; // Ruta correcta al modelo Attack
+
+import cors from "cors";
+import express from "express";
+
+const app = express();
+
+// Configuración de CORS solo para la URL de producción
+app.use(
+  cors({
+    origin: "https://cefalyx-g3207ag2u-nereas-projects-2a045b48.vercel.app",
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true,
+  })
+);
 
 // Conectar a MongoDB solo una vez
 if (!mongoose.connections[0].readyState) {
-  const mongoUri = "mongodb+srv://cefalyx_admin:Cefalyx2024@cefalyx.x6qwy.mongodb.net/cefalyx?retryWrites=true&w=majority";
+  const mongoUri =
+    "mongodb+srv://cefalyx_admin:Cefalyx2024@cefalyx.x6qwy.mongodb.net/cefalyx?retryWrites=true&w=majority";
   mongoose
     .connect(mongoUri)
     .then(() => {
@@ -68,7 +83,7 @@ export default async function handler(req, res) {
     try {
       const attackData = new Attack(req.body);
       const savedAttack = await attackData.save();
-      res.status(201).json(savedAttack);  // Código de estado 201 para creación exitosa
+      res.status(201).json(savedAttack); // Código de estado 201 para creación exitosa
     } catch (err) {
       res.status(500).json({ message: err.message || "Unknown error" });
     }
