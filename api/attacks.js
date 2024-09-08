@@ -39,19 +39,20 @@
 //     res.status(405).end(`Method ${req.method} Not Allowed`);
 //   }
 // }
-
 import mongoose from "mongoose";
 import Attack from "../models/Attack"; // Ruta correcta al modelo Attack
-
 import cors from "cors";
 import express from "express";
 
 const app = express();
 
-// Configuración de CORS solo para la URL de producción
+// Configuración de CORS para permitir múltiples orígenes
 app.use(
   cors({
-    origin: "https://cefalyx-g3207ag2u-nereas-projects-2a045b48.vercel.app",
+    origin: [
+      "https://cefalyx-g3207ag2u-nereas-projects-2a045b48.vercel.app",
+      "https://cefalyx-l80abudkx-nereas-projects-2a045b48.vercel.app",
+    ],
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
