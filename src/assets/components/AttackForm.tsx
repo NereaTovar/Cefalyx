@@ -21,7 +21,7 @@ interface AttackFormProps {
 }
 
 const AttackForm = ({ addAttack }: AttackFormProps) => {
-  const apiUrl = process.env.VITE_API_URL; // || "http://localhost:3001";
+  const apiUrl = process.env.VITE_API_URL || "https://backend-sandy-eight.vercel.app";
   console.log("API URL in AttackForm:", apiUrl);
   const [formData, setFormData] = useState<AttackFormType>({
     type: "",
