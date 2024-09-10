@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Container, Box, CssBaseline, Typography } from "@mui/material";
-import AttackForm from "./assets/components/AttackForm";
-import AttackList from "./assets/components/AttackList";
+import AttackForm from "./assets/components/attack-form/AttackForm";
+import AttackList from "./assets/components/attack-list/AttackList";
 import { AttackFormType, AttackListType } from "./assets/types/Attack";
 
 const App = () => {

@@ -16,7 +16,7 @@ import {
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import jsPDF from "jspdf";
 import * as XLSX from "xlsx";
-import { AttackListType } from "../types/Attack";
+import { AttackListType } from "../../types/Attack";
 
 interface AttackListProps {
   attacks: AttackListType[];
@@ -47,7 +47,7 @@ const formatDate = (dateString: string) => {
 
 const AttackList = ({ attacks, setAttacks }: AttackListProps) => {
   const apiUrl =
-    process.env.API_URL ||
+  import.meta.env.API_URL ||
     "https://cefalyx-nereas-projects-2a045b48.vercel.app";
   const [filteredAttacks, setFilteredAttacks] = useState<AttackListType[]>([]);
   const [selectedMonth, setSelectedMonth] = useState("");
