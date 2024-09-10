@@ -4,6 +4,7 @@ import { Container, Box, CssBaseline, Typography } from "@mui/material";
 import AttackForm from "./assets/components/attack-form/AttackForm";
 import AttackList from "./assets/components/attack-list/AttackList";
 import { AttackFormType, AttackListType } from "./assets/types/Attack";
+import "./App.css";
 
 const App = () => {
   const [attacks, setAttacks] = useState<AttackListType[]>([]);
@@ -13,7 +14,7 @@ const App = () => {
       try {
         // Añadir withCredentials si es necesario
         const response = await axios.get("/api/attacks", {
-          withCredentials: true, // Incluir esto solo si tu backend usa `credentials: true`
+          withCredentials: true, 
         });
         setAttacks(response.data);
       } catch (err) {
@@ -43,8 +44,8 @@ const App = () => {
   return (
     <Container>
       <CssBaseline />
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
+      <Box className="container">
+        <Typography variant="h4" component="h1" gutterBottom className="title">
           MyGraine
         </Typography>
         <AttackForm addAttack={addAttack} />

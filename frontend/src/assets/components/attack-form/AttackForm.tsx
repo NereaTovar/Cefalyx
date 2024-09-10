@@ -15,6 +15,7 @@ import { SelectChangeEvent } from "@mui/material/Select";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import { AttackFormType } from "../../types/Attack";
+import "./AttackForm.scss";
 
 interface AttackFormProps {
   addAttack: (attack: AttackFormType) => void;
@@ -102,107 +103,109 @@ const AttackForm = ({ addAttack }: AttackFormProps) => {
   };
 
   return (
-    <Box
-      component="form"
-      onSubmit={handleSubmit}
-      sx={{ display: "flex", flexDirection: "column", gap: 2 }}
-    >
-      <Typography variant="h6">Record a New Attack</Typography>
-      {error && <Alert severity="error">{error}</Alert>}
-      <FormControl fullWidth required>
-        <InputLabel>Type</InputLabel>
-        <Select value={formData.type} name="type" onChange={handleChange}>
-          <MenuItem value="">
-            <em>Select</em>
-          </MenuItem>
-          <MenuItem value="headache">Headache</MenuItem>
-          <MenuItem value="migraine">Migraine</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl fullWidth required>
-        <InputLabel>Intensity</InputLabel>
-        <Select
-          value={formData.intensity}
-          name="intensity"
-          onChange={handleChange}
-        >
-          <MenuItem value="">
-            <em>Select</em>
-          </MenuItem>
-          <MenuItem value="2">Moderate</MenuItem>
-          <MenuItem value="3">Intense</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl fullWidth>
-        <InputLabel>Duration (hours)</InputLabel>
-        <Select
-          value={formData.duration}
-          name="duration"
-          onChange={handleChange}
-        >
-          <MenuItem value="">
-            <em>Select</em>
-          </MenuItem>
-          <MenuItem value="12">12</MenuItem>
-          <MenuItem value="24">24</MenuItem>
-          <MenuItem value="48">48</MenuItem>
-          <MenuItem value="72">72</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl fullWidth>
-        <InputLabel>Medication</InputLabel>
-        <Select
-          value={formData.medication}
-          name="medication"
-          onChange={handleChange}
-        >
-          <MenuItem value="">
-            <em>Select</em>
-          </MenuItem>
-          <MenuItem value="triptans">Triptans</MenuItem>
-          <MenuItem value="ibuprofen">Ibuprofen</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl fullWidth>
-        <InputLabel>Invalidating</InputLabel>
-        <Select
-          value={formData.invalidating}
-          name="invalidating"
-          onChange={handleChange}
-        >
-          <MenuItem value="">
-            <em>Select</em>
-          </MenuItem>
-          <MenuItem value="yes">Yes</MenuItem>
-          <MenuItem value="no">No</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl fullWidth>
-        <InputLabel>Menstruation</InputLabel>
-        <Select
-          value={formData.menstruation}
-          name="menstruation"
-          onChange={handleChange}
-        >
-          <MenuItem value="">
-            <em>Select</em>
-          </MenuItem>
-          <MenuItem value="yes">Yes</MenuItem>
-          <MenuItem value="no">No</MenuItem>
-        </Select>
-      </FormControl>
-      <Typography variant="body1">Migraine Start Date</Typography>
-      <DatePicker
-        onChange={handleDateChange}
-        value={formData.date}
-        format="dd/MM/yyyy"
-        calendarIcon={null}
-        clearIcon={null}
-      />
-      <Button type="submit" variant="contained" color="primary">
-        Save Attack
-      </Button>
-    </Box>
+    <div className="form-container">
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+      >
+        <Typography variant="h6">Record a New Attack</Typography>
+        {error && <Alert severity="error">{error}</Alert>}
+        <FormControl fullWidth required>
+          <InputLabel>Type</InputLabel>
+          <Select value={formData.type} name="type" onChange={handleChange}>
+            <MenuItem value="">
+              <em>Select</em>
+            </MenuItem>
+            <MenuItem value="headache">Headache</MenuItem>
+            <MenuItem value="migraine">Migraine</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl fullWidth required>
+          <InputLabel>Intensity</InputLabel>
+          <Select
+            value={formData.intensity}
+            name="intensity"
+            onChange={handleChange}
+          >
+            <MenuItem value="">
+              <em>Select</em>
+            </MenuItem>
+            <MenuItem value="2">Moderate</MenuItem>
+            <MenuItem value="3">Intense</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl fullWidth>
+          <InputLabel>Duration (hours)</InputLabel>
+          <Select
+            value={formData.duration}
+            name="duration"
+            onChange={handleChange}
+          >
+            <MenuItem value="">
+              <em>Select</em>
+            </MenuItem>
+            <MenuItem value="12">12</MenuItem>
+            <MenuItem value="24">24</MenuItem>
+            <MenuItem value="48">48</MenuItem>
+            <MenuItem value="72">72</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl fullWidth>
+          <InputLabel>Medication</InputLabel>
+          <Select
+            value={formData.medication}
+            name="medication"
+            onChange={handleChange}
+          >
+            <MenuItem value="">
+              <em>Select</em>
+            </MenuItem>
+            <MenuItem value="triptans">Triptans</MenuItem>
+            <MenuItem value="ibuprofen">Ibuprofen</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl fullWidth>
+          <InputLabel>Invalidating</InputLabel>
+          <Select
+            value={formData.invalidating}
+            name="invalidating"
+            onChange={handleChange}
+          >
+            <MenuItem value="">
+              <em>Select</em>
+            </MenuItem>
+            <MenuItem value="yes">Yes</MenuItem>
+            <MenuItem value="no">No</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl fullWidth>
+          <InputLabel>Menstruation</InputLabel>
+          <Select
+            value={formData.menstruation}
+            name="menstruation"
+            onChange={handleChange}
+          >
+            <MenuItem value="">
+              <em>Select</em>
+            </MenuItem>
+            <MenuItem value="yes">Yes</MenuItem>
+            <MenuItem value="no">No</MenuItem>
+          </Select>
+        </FormControl>
+        <Typography variant="body1">Migraine Start Date</Typography>
+        <DatePicker
+          onChange={handleDateChange}
+          value={formData.date}
+          format="dd/MM/yyyy"
+          calendarIcon={null}
+          clearIcon={null}
+        />
+        <Button type="submit" variant="contained" color="primary">
+          Save Attack
+        </Button>
+      </Box>
+    </div>
   );
 };
 
