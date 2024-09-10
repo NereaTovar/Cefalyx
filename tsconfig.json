@@ -1,6 +1,0 @@
-{
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },  // Configuración para Vite (Frontend)
-  ]
-}
