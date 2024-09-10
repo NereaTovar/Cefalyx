@@ -21,7 +21,7 @@ interface AttackFormProps {
 }
 
 const AttackForm = ({ addAttack }: AttackFormProps) => {
-  const apiUrl = process.env.API_URL || "https://cefalyx.vercel.app/";
+  const apiUrl = process.env.API_URL || "https://cefalyx-nereas-projects-2a045b48.vercel.app";
   console.log("API URL in AttackForm:", apiUrl);
   const [formData, setFormData] = useState<AttackFormType>({
     type: "",
