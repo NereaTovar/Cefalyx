@@ -21,7 +21,7 @@ interface AttackFormProps {
 }
 
 const AttackForm = ({ addAttack }: AttackFormProps) => {
-  const apiUrl = process.env.VITE_API_URL || "https://backend-sandy-eight.vercel.app";
+  const apiUrl = process.env.API_URL || "https://cefalyx.vercel.app/";
   console.log("API URL in AttackForm:", apiUrl);
   const [formData, setFormData] = useState<AttackFormType>({
     type: "",
@@ -67,8 +67,9 @@ const AttackForm = ({ addAttack }: AttackFormProps) => {
     const capitalizedType =
       formData.type.charAt(0).toUpperCase() +
       formData.type.slice(1).toLowerCase();
-      // Verifica si formData.date es un objeto Date
-  const attackDate = formData.date instanceof Date ? formData.date : new Date(formData.date);
+    // Verifica si formData.date es un objeto Date
+    const attackDate =
+      formData.date instanceof Date ? formData.date : new Date(formData.date);
 
     // Convertir date a string antes de enviarlo al servidor
     const formattedData = {
