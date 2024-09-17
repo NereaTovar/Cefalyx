@@ -103,19 +103,17 @@ const AttackList = ({ attacks, setAttacks }: AttackListProps) => {
   const handleDownloadPdf = () => {
     const doc = new jsPDF();
     let y = 10;
-
+  
     doc.setFontSize(18);
     doc.text("Attack List", 10, y);
     y += 10;
-
+  
     doc.setFontSize(12);
     filteredAttacks.forEach((attack, index) => {
       doc.text(`Date: ${formatDate(attack.date)}`, 10, y);
       y += 6;
       doc.text(
-        `Type: ${attack.type} - Intensity: ${getIntensityLabel(
-          attack.intensity
-        )}`,
+        `Type: ${attack.type} - Intensity: ${getIntensityLabel(attack.intensity)}`,
         10,
         y
       );
@@ -127,9 +125,13 @@ const AttackList = ({ attacks, setAttacks }: AttackListProps) => {
       );
       y += 6;
       doc.text(
-        `Medication: ${attack.medication ? "Yes" : "No"} - Invalidating: ${
-          attack.invalidating ? "Yes" : "No"
-        } - Menstruation: ${attack.menstruation ? "Yes" : "No"}`,
+        `Medication: ${
+          attack.medication === "N/A" ? "N/A" : attack.medication ? "Yes" : "No"
+        } - Invalidating: ${
+          attack.invalidating === "N/A" ? "N/A" : attack.invalidating ? "Yes" : "No"
+        } - Menstruation: ${
+          attack.menstruation === "N/A" ? "N/A" : attack.menstruation ? "Yes" : "No"
+        }`,
         10,
         y
       );
@@ -139,9 +141,10 @@ const AttackList = ({ attacks, setAttacks }: AttackListProps) => {
         y += 5;
       }
     });
-
+  
     doc.save("attack-list.pdf");
   };
+  
 
   const handleDownloadExcel = () => {
     const worksheet = XLSX.utils.json_to_sheet(
@@ -150,16 +153,17 @@ const AttackList = ({ attacks, setAttacks }: AttackListProps) => {
         Type: attack.type,
         Intensity: getIntensityLabel(attack.intensity),
         Duration: attack.duration ? `${attack.duration} hours` : "N/A",
-        Medication: attack.medication ? "Yes" : "No",
-        Invalidating: attack.invalidating ? "Yes" : "No",
-        Menstruation: attack.menstruation ? "Yes" : "No",
+        Medication: attack.medication === "N/A" ? "N/A" : (attack.medication ? "Yes" : "No"),
+        Invalidating: attack.invalidating === "N/A" ? "N/A" : (attack.invalidating ? "Yes" : "No"),
+        Menstruation: attack.menstruation === "N/A" ? "N/A" : (attack.menstruation ? "Yes" : "No"),
       }))
     );
-
+  
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Attack List");
     XLSX.writeFile(workbook, "attack-list.xlsx");
   };
+  
 
   const toggleListVisibility = () => {
     setListVisible(!listVisible);

@@ -16,8 +16,8 @@ export interface AttackFormType {
     type: string;
     intensity: string;
     duration?: string;
-    medication?: boolean;
-    invalidating?: boolean;
-    menstruation?: boolean;
+    medication?: string;
+    invalidating?: string;
+    menstruation?: string;
   }
   
