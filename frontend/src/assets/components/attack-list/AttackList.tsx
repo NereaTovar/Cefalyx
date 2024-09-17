@@ -305,9 +305,24 @@ const AttackList = ({ attacks, setAttacks }: AttackListProps) => {
                       {attack.duration ? `${attack.duration} hours` : "N/A"}
                     </Typography>
                     <Typography variant="body1">
-                      Medication: {attack.medication ? "Yes" : "No"} -
-                      Invalidating: {attack.invalidating ? "Yes" : "No"} -
-                      Menstruation: {attack.menstruation ? "Yes" : "No"}
+                      Medication:{" "}
+                      {attack.medication === "N/A"
+                        ? "N/A"
+                        : attack.medication === "Yes"
+                        ? "Yes"
+                        : "No"}{" "}
+                      - Invalidating:{" "}
+                      {attack.invalidating === "N/A"
+                        ? "N/A"
+                        : attack.invalidating === "Yes"
+                        ? "Yes"
+                        : "No"}{" "}
+                      - Menstruation:{" "}
+                      {attack.menstruation === "N/A"
+                        ? "N/A"
+                        : attack.menstruation === "Yes"
+                        ? "Yes"
+                        : "No"}
                     </Typography>
                   </ListItem>
                   {index < filteredAttacks.length - 1 && (
