@@ -45,12 +45,40 @@ app.get("/api/attacks", async (req, res) => {
 
 // Ruta para crear un nuevo ataque
 app.post("/api/attacks", async (req, res) => {
-  const attackData = new Attack(req.body);
   try {
-    const savedAttack = await attackData.save();
-    res.status(201).json(savedAttack);
-  } catch (err) {
-    res.status(500).json({ message: err.message || "Unknown error" });
+    const {
+      type,
+      intensity,
+      duration,
+      medication,
+      invalidating,
+      menstruation,
+      date,
+    } = req.body;
+
+    // Verificar que solo los campos obligatorios están presentes
+    if (!type || !intensity) {
+      return res
+        .status(400)
+        .json({ message: "Type and Intensity are required" });
+    }
+
+    // Crear un nuevo ataque, utilizando valores predeterminados si ciertos campos no están presentes
+    const newAttack = new Attack({
+      type,
+      intensity,
+      duration: duration || null, // Si no está definido, asignar null
+      medication: medication || null, // Si no está definido, asignar null
+      invalidating: invalidating || false, // Si no está definido, asignar false
+      menstruation: menstruation || false, // Si no está definido, asignar false
+      date: date ? new Date(date) : Date.now(), // Si no está definida la fecha, usar la fecha actual
+    });
+
+    const savedAttack = await newAttack.save();
+    res.status(201).json(savedAttack); // Respuesta de éxito
+  } catch (error) {
+    console.error("Error saving attack:", error);
+    res.status(500).json({ message: "Server error saving attack" });
   }
 });
 
