@@ -63,15 +63,15 @@ app.post("/api/attacks", async (req, res) => {
         .json({ message: "Type and Intensity are required" });
     }
 
-    // Crear un nuevo ataque, utilizando valores predeterminados si ciertos campos no están presentes
+    // Crear un nuevo ataque, dejando los campos opcionales como undefined si no están presentes
     const newAttack = new Attack({
       type,
       intensity,
-      duration: duration || null, // Si no está definido, asignar null
-      medication: medication || null, // Si no está definido, asignar null
-      invalidating: invalidating || false, // Si no está definido, asignar false
-      menstruation: menstruation || false, // Si no está definido, asignar false
-      date: date ? new Date(date) : Date.now(), // Si no está definida la fecha, usar la fecha actual
+      duration: duration || undefined, // Dejar sin valor si no está presente
+      medication: medication || undefined, // Dejar sin valor si no está presente
+      invalidating: invalidating !== undefined ? invalidating : undefined, // Dejar sin valor si no está presente
+      menstruation: menstruation !== undefined ? menstruation : undefined, // Dejar sin valor si no está presente
+      date: date ? new Date(date) : undefined, // Dejar sin valor si no se proporciona una fecha
     });
 
     const savedAttack = await newAttack.save();
