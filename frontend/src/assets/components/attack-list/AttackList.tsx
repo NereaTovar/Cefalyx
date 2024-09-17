@@ -132,7 +132,7 @@ const AttackList = ({ attacks, setAttacks }: AttackListProps) => {
       y += 6;
       doc.text(
         `Medication: ${
-          attack.medication && attack.medication !== "N/A" ? "Yes" : "N/A"
+          attack.medication && attack.medication !== "N/A" ?  `${attack.medication}`: "N/A"
         } - Invalidating: ${
           attack.invalidating && attack.invalidating !== "N/A" ? "Yes" : "N/A"
         } - Menstruation: ${
@@ -159,11 +159,7 @@ const AttackList = ({ attacks, setAttacks }: AttackListProps) => {
         Intensity: getIntensityLabel(attack.intensity),
         Duration: attack.duration ? `${attack.duration} hours` : "N/A",
         Medication:
-          attack.medication === "N/A"
-            ? "N/A"
-            : attack.medication
-            ? "Yes"
-            : "No",
+          attack.medication ? `${attack.medication} hours` : "N/A",
         Invalidating:
           attack.invalidating === "N/A"
             ? "N/A"
@@ -306,11 +302,7 @@ const AttackList = ({ attacks, setAttacks }: AttackListProps) => {
                     </Typography>
                     <Typography variant="body1">
                       Medication:{" "}
-                      {attack.medication === "N/A"
-                        ? "N/A"
-                        : attack.medication === "yes"
-                        ? "Yes"
-                        : "No"}{" "}
+                      {attack.medication ? `${attack.medication} ` : "N/A"}
                       - Invalidating:{" "}
                       {attack.invalidating === "N/A"
                         ? "N/A"
