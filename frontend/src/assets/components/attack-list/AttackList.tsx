@@ -47,7 +47,7 @@ const formatDate = (dateString: string) => {
 
 const AttackList = ({ attacks, setAttacks }: AttackListProps) => {
   const apiUrl =
-  import.meta.env.API_URL ||
+    import.meta.env.API_URL ||
     "https://cefalyx-nereas-projects-2a045b48.vercel.app";
   const [filteredAttacks, setFilteredAttacks] = useState<AttackListType[]>([]);
   const [selectedMonth, setSelectedMonth] = useState("");

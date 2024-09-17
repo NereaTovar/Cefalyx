@@ -25,9 +25,9 @@ const attackSchema = new mongoose.Schema({
   type: { type: String, required: true },
   intensity: { type: String, required: true },
   duration: { type: String, required: false, default: null }, // Opcional con valor por defecto
-  invalidating: { type: Boolean, required: false, default: false }, // Opcional con valor por defecto
+  invalidating: { type: String, required: false, default: null }, // Opcional con valor por defecto
   medication: { type: String, required: false, default: null }, // Opcional con valor por defecto
-  menstruation: { type: Boolean, required: false, default: false }, // Opcional con valor por defecto
+  menstruation: { type: String, required: false, default: null }, // Opcional con valor por defecto
   date: { type: Date, default: Date.now }, // Fecha por defecto
 });
 
@@ -67,11 +67,11 @@ app.post("/api/attacks", async (req, res) => {
     const newAttack = new Attack({
       type,
       intensity,
-      duration: duration || "N/A", // Si no está definido, asignar "N/A"
-      medication: medication || "N/A", // Si no está definido, asignar "N/A"
-      invalidating: invalidating !== undefined ? invalidating : false, // Si no está definido, asignar false
-      menstruation: menstruation !== undefined ? menstruation : false, // Si no está definido, asignar false
-      date: date ? new Date(date) : Date.now(), // Si no está definida la fecha, usar la fecha actual
+      duration: duration || "N/A",
+      medication: medication || "N/A",
+      invalidating: invalidating || "N/A",
+      menstruation: menstruation || "N/A",
+      date: date ? new Date(date) : Date.now(),
     });
 
     const savedAttack = await newAttack.save();
