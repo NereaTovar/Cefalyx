@@ -308,19 +308,19 @@ const AttackList = ({ attacks, setAttacks }: AttackListProps) => {
                       Medication:{" "}
                       {attack.medication === "N/A"
                         ? "N/A"
-                        : attack.medication === "Yes"
+                        : attack.medication === "yes"
                         ? "Yes"
                         : "No"}{" "}
                       - Invalidating:{" "}
                       {attack.invalidating === "N/A"
                         ? "N/A"
-                        : attack.invalidating === "Yes"
+                        : attack.invalidating === "yes"
                         ? "Yes"
                         : "No"}{" "}
                       - Menstruation:{" "}
                       {attack.menstruation === "N/A"
                         ? "N/A"
-                        : attack.menstruation === "Yes"
+                        : attack.menstruation === "yes"
                         ? "Yes"
                         : "No"}
                     </Typography>
