@@ -16,9 +16,6 @@ API for Cefalyx
 ¢ npm run dev
 ```
 
-## Change config
+## Despliegue
 
-```shell
-$ cp .env
-$ # Restart
-```
+https://app-cefalyx.vercel.app/

@@ -121,6 +121,7 @@ const AttackForm = ({ addAttack }: AttackFormProps) => {
             <MenuItem value="migraine">Migraine</MenuItem>
           </Select>
         </FormControl>
+
         <FormControl fullWidth required>
           <InputLabel>Intensity</InputLabel>
           <Select
@@ -135,6 +136,7 @@ const AttackForm = ({ addAttack }: AttackFormProps) => {
             <MenuItem value="3">Intense</MenuItem>
           </Select>
         </FormControl>
+
         <FormControl fullWidth>
           <InputLabel>Duration (hours)</InputLabel>
           <Select
@@ -151,6 +153,7 @@ const AttackForm = ({ addAttack }: AttackFormProps) => {
             <MenuItem value="72">72</MenuItem>
           </Select>
         </FormControl>
+
         <FormControl fullWidth>
           <InputLabel>Medication</InputLabel>
           <Select
@@ -165,6 +168,7 @@ const AttackForm = ({ addAttack }: AttackFormProps) => {
             <MenuItem value="ibuprofen">Ibuprofen</MenuItem>
           </Select>
         </FormControl>
+
         <FormControl fullWidth>
           <InputLabel>Invalidating</InputLabel>
           <Select
@@ -179,6 +183,7 @@ const AttackForm = ({ addAttack }: AttackFormProps) => {
             <MenuItem value="no">No</MenuItem>
           </Select>
         </FormControl>
+
         <FormControl fullWidth>
           <InputLabel>Menstruation</InputLabel>
           <Select
@@ -193,6 +198,7 @@ const AttackForm = ({ addAttack }: AttackFormProps) => {
             <MenuItem value="no">No</MenuItem>
           </Select>
         </FormControl>
+
         <Typography variant="body1">Migraine Start Date</Typography>
         <DatePicker
           onChange={handleDateChange}
