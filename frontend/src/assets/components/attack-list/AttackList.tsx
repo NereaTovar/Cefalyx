@@ -132,11 +132,23 @@ const AttackList = ({ attacks, setAttacks }: AttackListProps) => {
       y += 6;
       doc.text(
         `Medication: ${
-          attack.medication && attack.medication !== "N/A" ?  `${attack.medication}`: "N/A"
+          attack.medication === "yes"
+            ? "Yes"
+            : attack.medication === "no"
+            ? "No"
+            : "N/A"
         } - Invalidating: ${
-          attack.invalidating && attack.invalidating !== "N/A" ? "Yes" : "N/A"
+          attack.invalidating === "yes"
+            ? "Yes"
+            : attack.invalidating === "no"
+            ? "No"
+            : "N/A"
         } - Menstruation: ${
-          attack.menstruation && attack.menstruation !== "N/A" ? "Yes" : "N/A"
+          attack.menstruation === "yes"
+            ? "Yes"
+            : attack.menstruation === "no"
+            ? "No"
+            : "N/A"
         }`,
         10,
         y
@@ -159,19 +171,23 @@ const AttackList = ({ attacks, setAttacks }: AttackListProps) => {
         Intensity: getIntensityLabel(attack.intensity),
         Duration: attack.duration ? `${attack.duration} hours` : "N/A",
         Medication:
-          attack.medication ? `${attack.medication} hours` : "N/A",
+          attack.medication === "yes"
+            ? "Yes"
+            : attack.medication === "no"
+            ? "No"
+            : "N/A",
         Invalidating:
-          attack.invalidating === "N/A"
-            ? "N/A"
-            : attack.invalidating
+          attack.invalidating === "yes"
             ? "Yes"
-            : "No",
+            : attack.invalidating === "no"
+            ? "No"
+            : "N/A",
         Menstruation:
-          attack.menstruation === "N/A"
-            ? "N/A"
-            : attack.menstruation
+          attack.menstruation === "yes"
             ? "Yes"
-            : "No",
+            : attack.menstruation === "no"
+            ? "No"
+            : "N/A",
       }))
     );
 
@@ -302,8 +318,8 @@ const AttackList = ({ attacks, setAttacks }: AttackListProps) => {
                     </Typography>
                     <Typography variant="body1">
                       Medication:{" "}
-                      {attack.medication ? `${attack.medication} ` : "N/A"}
-                      - Invalidating:{" "}
+                      {attack.medication ? `${attack.medication} ` : "N/A"}-
+                      Invalidating:{" "}
                       {attack.invalidating === "N/A"
                         ? "N/A"
                         : attack.invalidating === "yes"
