@@ -1,7 +1,7 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
-const cors = require('cors'); // Import CORS
+const express = require("express");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const cors = require("cors"); // Import CORS
 dotenv.config();
 
 const app = express();
@@ -15,20 +15,20 @@ mongoose.connect(process.env.MONGO_URI, {
 });
 
 const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-  console.log('Connected to MongoDB');
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", () => {
+  console.log("Connected to MongoDB");
 });
 
 // Definición del esquema del ataque y las rutas para las solicitudes
 const attackSchema = new mongoose.Schema({
   type: { type: String, required: true },
   intensity: { type: String, required: true },
-  duration: { type: String },
-  invalidating: { type: Boolean, required: false },
-  medication: { type: String, required: false },
-  menstruation: { type: Boolean, required: false },
-  date: { type: Date, default: Date.now },
+  duration: { type: String, required: false, default: null }, // Opcional con valor por defecto
+  invalidating: { type: Boolean, required: false, default: false }, // Opcional con valor por defecto
+  medication: { type: String, required: false, default: null }, // Opcional con valor por defecto
+  menstruation: { type: Boolean, required: false, default: false }, // Opcional con valor por defecto
+  date: { type: Date, default: Date.now }, // Fecha por defecto
 });
 
 const Attack = mongoose.model("Attack", attackSchema);
