@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
 import Attack from "../models/Attack";
 
-// Conectar a MongoDB solo una vez
 if (!mongoose.connections[0].readyState) {
-  const mongoUri = process.env.MONGO_URI; // Asegúrate de que MONGO_URI esté configurado
+  const mongoUri = process.env.MONGO_URI;
   mongoose
     .connect(mongoUri)
     .then(() => {

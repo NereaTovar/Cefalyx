@@ -70,22 +70,22 @@ const AttackForm = ({ addAttack }: AttackFormProps) => {
     const capitalizedType =
       formData.type.charAt(0).toUpperCase() +
       formData.type.slice(1).toLowerCase();
-    // Verifica si formData.date es un objeto Date
+
     const attackDate =
       formData.date instanceof Date ? formData.date : new Date(formData.date);
 
-    // Convertir date a string antes de enviarlo al servidor
+
     const formattedData = {
       ...formData,
       type: capitalizedType,
-      date: attackDate.toISOString(), // Aquí convertimos a string ISO
+      date: attackDate.toISOString(),
     };
 
     console.log("Submitting data:", formattedData);
 
     try {
       const response = await axios.post(`${apiUrl}/api/attacks`, formattedData);
-      addAttack(response.data); // Aquí el servidor te devolverá el ataque con la fecha como string
+      addAttack(response.data); 
       setFormData({
         type: "",
         intensity: "",

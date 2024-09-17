@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-// Definir el esquema para el ataque
+
 const attackSchema = new mongoose.Schema({
   type: { type: String, required: true },
   intensity: { type: String, required: true },
@@ -11,7 +11,7 @@ const attackSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now },
 });
 
-// Crear el modelo basado en el esquema
+
 const Attack = mongoose.model('Attack', attackSchema);
 
 export default Attack;

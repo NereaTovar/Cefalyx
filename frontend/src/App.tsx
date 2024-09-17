@@ -12,7 +12,6 @@ const App = () => {
   useEffect(() => {
     const fetchAttacks = async () => {
       try {
-        // Añadir withCredentials si es necesario
         const response = await axios.get("/api/attacks", {
           withCredentials: true,
         });
@@ -24,41 +23,7 @@ const App = () => {
     fetchAttacks();
   }, []);
 
-  // Función para agregar un nuevo ataque
-  // const addAttack = (newAttack: AttackFormType) => {
-  //   const attackDate =
-  //     newAttack.date instanceof Date
-  //       ? newAttack.date
-  //       : new Date(newAttack.date);
-
-  //   const newAttackWithDateString: AttackListType = {
-  //     ...newAttack,
-  //     date: attackDate.toISOString(),
-  //     // Si los valores son "N/A", los mantenemos como están
-  //     medication:
-  //       newAttack.medication !== "N/A"
-  //         ? newAttack.medication === "yes"
-  //           ? "Yes"
-  //           : "No"
-  //         : "N/A",
-  //     invalidating:
-  //       newAttack.invalidating !== "N/A"
-  //         ? newAttack.invalidating === "yes"
-  //           ? "Yes"
-  //           : "No"
-  //         : "N/A",
-  //     menstruation:
-  //       newAttack.menstruation !== "N/A"
-  //         ? newAttack.menstruation === "yes"
-  //           ? "Yes"
-  //           : "No"
-  //         : "N/A",
-  //   };
-
-  //   setAttacks((prevAttacks) => [newAttackWithDateString, ...prevAttacks]);
-  // };
-
-  // Función para agregar un nuevo ataque
+  // New Attack
   const addAttack = (newAttack: AttackFormType) => {
     const attackDate =
       newAttack.date instanceof Date
@@ -68,9 +33,9 @@ const App = () => {
     const newAttackWithDateString: AttackListType = {
       ...newAttack,
       date: attackDate.toISOString(),
-      medication: newAttack.medication || "N/A", // Asigna "N/A" si no está presente
-      invalidating: newAttack.invalidating || "N/A", // Asigna "N/A" si no está presente
-      menstruation: newAttack.menstruation || "N/A", // Asigna "N/A" si no está presente
+      medication: newAttack.medication || "N/A",
+      invalidating: newAttack.invalidating || "N/A",
+      menstruation: newAttack.menstruation || "N/A",
     };
 
     setAttacks((prevAttacks) => [newAttackWithDateString, ...prevAttacks]);

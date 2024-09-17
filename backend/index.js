@@ -1,12 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const cors = require("cors"); // Import CORS
+const cors = require("cors");
 dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors()); // Enable CORS for all routes
+app.use(cors());
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {
@@ -20,20 +20,19 @@ db.once("open", () => {
   console.log("Connected to MongoDB");
 });
 
-// Definición del esquema del ataque y las rutas para las solicitudes
 const attackSchema = new mongoose.Schema({
   type: { type: String, required: true },
   intensity: { type: String, required: true },
-  duration: { type: String, required: false, default: null }, // Opcional con valor por defecto
-  invalidating: { type: String, required: false, default: null }, // Opcional con valor por defecto
-  medication: { type: String, required: false, default: null }, // Opcional con valor por defecto
-  menstruation: { type: String, required: false, default: null }, // Opcional con valor por defecto
-  date: { type: Date, default: Date.now }, // Fecha por defecto
+  duration: { type: String, required: false, default: null },
+  invalidating: { type: String, required: false, default: null },
+  medication: { type: String, required: false, default: null },
+  menstruation: { type: String, required: false, default: null },
+  date: { type: Date, default: Date.now },
 });
 
 const Attack = mongoose.model("Attack", attackSchema);
 
-// Ruta para obtener todos los ataques
+// New Attacks Route
 app.get("/api/attacks", async (req, res) => {
   try {
     const attacks = await Attack.find();
@@ -43,7 +42,7 @@ app.get("/api/attacks", async (req, res) => {
   }
 });
 
-// Ruta para crear un nuevo ataque
+// Create new Attack
 app.post("/api/attacks", async (req, res) => {
   try {
     const {
@@ -56,14 +55,14 @@ app.post("/api/attacks", async (req, res) => {
       date,
     } = req.body;
 
-    // Verificar que solo los campos obligatorios están presentes
+    // Only mandatory
     if (!type || !intensity) {
       return res
         .status(400)
         .json({ message: "Type and Intensity are required" });
     }
 
-    // Crear un nuevo ataque, utilizando "N/A" o valores predeterminados si ciertos campos no están presentes
+    // N/A if not mandatory
     const newAttack = new Attack({
       type,
       intensity,
@@ -75,7 +74,7 @@ app.post("/api/attacks", async (req, res) => {
     });
 
     const savedAttack = await newAttack.save();
-    res.status(201).json(savedAttack); // Respuesta de éxito
+    res.status(201).json(savedAttack);
   } catch (error) {
     console.error("Error saving attack:", error);
     res.status(500).json({ message: "Server error saving attack" });

@@ -1,4 +1,4 @@
-// Tipo para AttackForm (donde date es un Date)
+
 export interface AttackFormType {
     type: string;
   intensity: string;
@@ -9,7 +9,7 @@ export interface AttackFormType {
   date: Date;
   }
   
-  // Tipo para AttackList (donde date es un string, posiblemente ISO)
+
   export interface AttackListType {
     _id?: string;
     date: string;
