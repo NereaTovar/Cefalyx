@@ -24,11 +24,11 @@ db.once("open", () => {
 const attackSchema = new mongoose.Schema({
   type: { type: String, required: true },
   intensity: { type: String, required: true },
-  duration: { type: String, required: false, default: null }, // Opcional con valor por defecto
-  invalidating: { type: Boolean, required: false, default: false }, // Opcional con valor por defecto
-  medication: { type: String, required: false, default: null }, // Opcional con valor por defecto
-  menstruation: { type: Boolean, required: false, default: false }, // Opcional con valor por defecto
-  date: { type: Date, default: Date.now }, // Fecha por defecto
+  duration: { type: String }, // No es obligatorio
+  medication: { type: String }, // No es obligatorio
+  invalidating: { type: Boolean }, // No es obligatorio
+  menstruation: { type: Boolean }, // No es obligatorio
+  date: { type: Date, default: Date.now }, // Fecha opcional
 });
 
 const Attack = mongoose.model("Attack", attackSchema);
