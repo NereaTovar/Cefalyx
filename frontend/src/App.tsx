@@ -14,7 +14,7 @@ const App = () => {
       try {
         // Añadir withCredentials si es necesario
         const response = await axios.get("/api/attacks", {
-          withCredentials: true, 
+          withCredentials: true,
         });
         setAttacks(response.data);
       } catch (err) {
@@ -30,12 +30,29 @@ const App = () => {
       newAttack.date instanceof Date
         ? newAttack.date
         : new Date(newAttack.date);
+
     const newAttackWithDateString: AttackListType = {
       ...newAttack,
       date: attackDate.toISOString(),
-      medication: newAttack.medication === "yes",
-      invalidating: newAttack.invalidating === "yes",
-      menstruation: newAttack.menstruation === "yes",
+      // Si los valores son "N/A", los mantenemos como están
+      medication:
+        newAttack.medication !== "N/A"
+          ? newAttack.medication === "yes"
+            ? "Yes"
+            : "No"
+          : "N/A",
+      invalidating:
+        newAttack.invalidating !== "N/A"
+          ? newAttack.invalidating === "yes"
+            ? "Yes"
+            : "No"
+          : "N/A",
+      menstruation:
+        newAttack.menstruation !== "N/A"
+          ? newAttack.menstruation === "yes"
+            ? "Yes"
+            : "No"
+          : "N/A",
     };
 
     setAttacks((prevAttacks) => [newAttackWithDateString, ...prevAttacks]);
