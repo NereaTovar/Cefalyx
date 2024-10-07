@@ -111,6 +111,16 @@ const AttackForm = ({ addAttack }: AttackFormProps) => {
       >
         <Typography variant="h6">Record a New Attack</Typography>
         {error && <Alert severity="error">{error}</Alert>}
+
+        <Typography variant="body1">Start Date</Typography>
+        <DatePicker
+          onChange={handleDateChange}
+          value={formData.date}
+          format="dd/MM/yyyy"
+          calendarIcon={null}
+          clearIcon={null}
+        />
+
         <FormControl fullWidth required>
           <InputLabel>Type</InputLabel>
           <Select value={formData.type} name="type" onChange={handleChange}>
@@ -199,14 +209,7 @@ const AttackForm = ({ addAttack }: AttackFormProps) => {
           </Select>
         </FormControl>
 
-        <Typography variant="body1">Migraine Start Date</Typography>
-        <DatePicker
-          onChange={handleDateChange}
-          value={formData.date}
-          format="dd/MM/yyyy"
-          calendarIcon={null}
-          clearIcon={null}
-        />
+      
         <Button type="submit" variant="contained" color="primary">
           Save Attack
         </Button>

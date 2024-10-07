@@ -12,7 +12,10 @@ const App = () => {
   useEffect(() => {
     const fetchAttacks = async () => {
       try {
-        const response = await axios.get("/api/attacks", {
+        // const response = await axios.get("/api/attacks", {
+        //   withCredentials: true,
+        // });
+        const response = await axios.get("http://localhost:3001/api/attacks", {
           withCredentials: true,
         });
         setAttacks(response.data);
