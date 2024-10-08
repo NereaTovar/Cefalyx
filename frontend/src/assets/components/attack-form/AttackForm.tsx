@@ -74,18 +74,15 @@ const AttackForm = ({ addAttack }: AttackFormProps) => {
     const attackDate =
       formData.date instanceof Date ? formData.date : new Date(formData.date);
 
-
     const formattedData = {
       ...formData,
       type: capitalizedType,
       date: attackDate.toISOString(),
     };
 
-    console.log("Submitting data:", formattedData);
-
     try {
       const response = await axios.post(`${apiUrl}/api/attacks`, formattedData);
-      addAttack(response.data); 
+      addAttack(response.data);
       setFormData({
         type: "",
         intensity: "",
@@ -209,11 +206,12 @@ const AttackForm = ({ addAttack }: AttackFormProps) => {
           </Select>
         </FormControl>
 
-      
         <Button type="submit" variant="contained" color="primary">
           Save Attack
         </Button>
       </Box>
+
+    
     </div>
   );
 };
