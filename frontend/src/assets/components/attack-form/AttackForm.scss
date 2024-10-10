@@ -17,3 +17,20 @@
 .form-error {
   margin-bottom: 15px;
 }
+
+.react-date-picker,
+.react-date-picker__wrapper,
+.react-calendar {
+  background-color: white !important;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.react-calendar__tile {
+  background-color: white !important;
+}
+
+.react-date-picker__calendar {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
