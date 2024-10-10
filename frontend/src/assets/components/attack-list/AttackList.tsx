@@ -465,7 +465,8 @@ const AttackList = ({ attacks, setAttacks }: AttackListProps) => {
   const [selectedType, setSelectedType] = useState("");
   const [listVisible, setListVisible] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [editAttack, setEditAttack] = useState<AttackListType | null>(null); // Estado para edición
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [editAttack, setEditAttack] = useState<AttackListType | null>(null);
 
   const fetchAttacks = async () => {
     try {
@@ -619,30 +620,35 @@ const AttackList = ({ attacks, setAttacks }: AttackListProps) => {
 
   // Update Attack in the server
   const handleUpdateAttack = async (updatedAttack: AttackFormType) => {
+    if (!editAttack || !editAttack._id) return;
+
     try {
-      if (!editAttack) return;
+      // Update attack in the database
+      const response = await axios.put(
+        `${apiUrl}/api/attacks/${editAttack._id}`,
+        updatedAttack
+      );
 
-      // Convierte la fecha a string (ISO)
-      const formattedAttack: AttackListType = {
-        ...editAttack,
-        ...updatedAttack,
-        date: updatedAttack.date instanceof Date
-          ? updatedAttack.date.toISOString()
-          : updatedAttack.date,
-      };
-
-      const response = await axios.put(`${apiUrl}/api/attacks/${editAttack._id}`, formattedAttack);
-
+      // Update the attack in the state
       setAttacks((prev) =>
         prev.map((attack) =>
-          attack._id === editAttack._id ? { ...response.data, date: response.data.date } : attack
+          attack._id === editAttack._id ? response.data : attack
         )
       );
 
-      setEditAttack(null);  // Termina la edición
+      // Clear edit state and show success message
+      setEditAttack(null);
+      setSnackbarMessage("Attack updated successfully!");
+      setSnackbarOpen(true);
     } catch (error) {
       console.error("Error updating attack:", error);
+      setSnackbarMessage("Error updating attack");
+      setSnackbarOpen(true);
     }
+  };
+
+  const handleCancelEdit = () => {
+    setEditAttack(null);
   };
 
   // Delete Attack
@@ -678,7 +684,7 @@ const AttackList = ({ attacks, setAttacks }: AttackListProps) => {
             <AttackForm
               initialData={editAttack} // Pass the data to the form
               onSubmit={handleUpdateAttack} // Handle the update
-              onCancel={() => setEditAttack(null)} // Cancel the editing
+              onCancel={handleCancelEdit} // Cancel the editing
             />
           </div>
         ) : (
@@ -790,7 +796,7 @@ const AttackList = ({ attacks, setAttacks }: AttackListProps) => {
           </>
         )}
 
-        <Snackbar
+        {/* <Snackbar
           open={snackbarOpen}
           autoHideDuration={3000}
           onClose={handleSnackbarClose}
@@ -798,6 +804,16 @@ const AttackList = ({ attacks, setAttacks }: AttackListProps) => {
         >
           <Alert onClose={handleSnackbarClose} severity="success">
             Attack deleted
+          </Alert>
+        </Snackbar> */}
+        <Snackbar
+          open={snackbarOpen}
+          autoHideDuration={3000}
+          onClose={handleSnackbarClose}
+          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        >
+          <Alert onClose={handleSnackbarClose} severity="success">
+            {snackbarMessage}
           </Alert>
         </Snackbar>
       </Box>
