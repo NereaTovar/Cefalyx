@@ -46,7 +46,7 @@ const getIntensityLabel = (intensity: string) => {
 const formatDate = (dateString: string) => {
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
-    month: "long",
+    month: "short",
     day: "numeric",
   };
   return new Date(dateString).toLocaleDateString(undefined, options);
