@@ -14,6 +14,17 @@
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
+  .attack-date {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 5px;
+  }
+
+  .MuiTypography-root {
+    margin-bottom: 5px;
+  }
+
   .header-container {
     display: flex;
     flex-direction: column;

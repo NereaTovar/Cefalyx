@@ -364,6 +364,21 @@ const AttackList = ({ attacks, setAttacks }: AttackListProps) => {
                               Type: {attack.type} - Intensity:{" "}
                               {getIntensityLabel(attack.intensity)}
                             </Typography>
+                            <Typography variant="body1">
+                              Duration:{" "}
+                              {attack.duration
+                                ? `${attack.duration} hours`
+                                : "N/A"}
+                            </Typography>
+                            <Typography variant="body1">
+                              Medication: {attack.medication || "N/A"}
+                            </Typography>
+                            <Typography variant="body1">
+                              Invalidating: {attack.invalidating || "N/A"}
+                            </Typography>
+                            <Typography variant="body1">
+                              Menstruation: {attack.menstruation || "N/A"}
+                            </Typography>
                             <Button
                               onClick={() => handleEdit(attack)}
                               color="primary"
