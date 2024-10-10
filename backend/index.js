@@ -115,6 +115,35 @@ app.delete("/api/attacks/:id", async (req, res) => {
   }
 });
 
+// Ruta para actualizar un ataque existente
+app.put("/api/attacks/:id", async (req, res) => {
+  try {
+    const { id } = req.params;  // Obtener el ID del ataque desde los parámetros de la URL
+    const updatedAttack = req.body;  // Obtener los datos actualizados desde el cuerpo de la solicitud
+
+    // Verificar si el ID es un ObjectId válido
+    if (!ObjectId.isValid(id)) {
+      return res.status(400).send("Invalid attack ID");
+    }
+
+    // Buscar el ataque por ID y actualizarlo
+    const attack = await Attack.findByIdAndUpdate(id, updatedAttack, { new: true });
+
+    // Si el ataque no existe, devolver un error 404
+    if (!attack) {
+      return res.status(404).json({ message: "Attack not found" });
+    }
+
+    // Devolver el ataque actualizado
+    res.status(200).json(attack);
+  } catch (error) {
+    // Manejar errores y devolver un código 500
+    console.error("Error updating attack:", error);
+    res.status(500).json({ message: "Server error updating attack" });
+  }
+});
+
+
 // Iniciar el servidor
 const PORT = process.env.PORT || 3000 || 3001;
 app.listen(PORT, () => {
