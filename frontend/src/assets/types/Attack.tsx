@@ -6,13 +6,13 @@ export interface AttackFormType {
   medication: string;
   menstruation: string;
   duration: string;
-  date: Date;
+  date: Date | string;
   }
   
 
   export interface AttackListType {
     _id?: string;
-    date: string;
+    date: string  ;
     type: string;
     intensity: string;
     duration?: string;
