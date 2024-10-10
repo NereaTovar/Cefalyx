@@ -361,8 +361,10 @@ const AttackList = ({ attacks, setAttacks }: AttackListProps) => {
                               Date: {formatDate(attack.date)}
                             </Typography>
                             <Typography variant="body1">
-                              Type: {attack.type} - Intensity:{" "}
-                              {getIntensityLabel(attack.intensity)}
+                              Type: {attack.type}
+                            </Typography>
+                            <Typography variant="body1">
+                              Intensity: {getIntensityLabel(attack.intensity)}
                             </Typography>
                             <Typography variant="body1">
                               Duration:{" "}
